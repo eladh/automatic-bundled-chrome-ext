@@ -1,0 +1,11 @@
+{
+  "name": "generate-crx",
+  "description": "generate-crx",
+  "author": "hirsch.elad@gmail.com",
+  "dependencies": {
+    "crx": "*",
+    "minimist": "*",
+    "readable-stream" : "*"
+  },
+  "engine": "node"
+}

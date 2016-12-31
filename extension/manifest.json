@@ -1,0 +1,69 @@
+{
+  "name": "Websocket Manager",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "content_security_policy": "script-src 'self' https://pearlpubsubdev; object-src 'self'" ,
+
+  "default_locale": "en",
+  "background": {
+    "page": "src/bg/background.html",
+    "persistent": true
+  },
+  "permissions": [
+	"background",
+	"tabs",
+    "bookmarks",
+    "chrome://favicon/",
+    "contentSettings",
+    "idle",
+	"identity",
+    "webRequest",
+    "webRequestBlocking",
+    "http://*/*",
+    "storage",
+    "https://*/*",
+    "management",
+    "notifications",
+	"http://phonebook/*",
+	"http://wsdev:*/*",
+	"https://pearlpubsubdev/*"
+  ],
+ 
+  
+  "externally_connectable": {
+	"matches": [
+	  "http://localhost:*/*",
+	  "http://wsdev:*/*",
+	  "http://phonebook/*"
+	]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+		"http://phonebook:*/site/index.html*",
+		"http://wsdev:*/site/index.html*",
+        "http://localhost:1440/*"
+      ],
+      "js": [
+        "src/inject/inject.js"
+      ],
+	  "run_at": "document_start"
+    }
+  ] , 
+  
+  	"web_accessible_resources" : ["/src/inject/load2page.js"],
+
+   "browser_action": {
+      "default_title": "Toggle Content-Security-Policy",
+      "default_icon": {
+          "16": "images/icon38-off.png"
+      }
+  }
+}
